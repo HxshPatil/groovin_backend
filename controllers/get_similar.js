@@ -14,7 +14,7 @@ const getSimilarCarsCallback = async (req, res) => {
       similarity: calculateSimilarity(manufacturer, car.manufacturer) +
                    calculateSimilarity(model, car.model),
     }));
-
+    
     // Sort the results by similarity in descending order
     similarityScores.sort((a, b) => b.similarity - a.similarity);
 
