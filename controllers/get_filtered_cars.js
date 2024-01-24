@@ -5,37 +5,37 @@ const filterCars = async (req, res) => {
   const filter_cars = req.query;
 
   try {
-    const colorFilter = filter_cars.colors;
-    const mileageFilter = filter_cars.mileage;
-    const maxPriceFilter = filter_cars.maxPrice;
-    const minPriceFilter = filter_cars.minPrice;
+    let { colors, mileage, maxPrice, minPrice } = filter_cars;
+
+    // Convert color input to lowercase for case-insensitive comparison
+    colors = colors ? colors.toLowerCase() : colors;
 
     const additionalFilters = {};
 
     // Check if colorFilter is provided
-    if (colorFilter && colorFilter !== 'All') {
-      additionalFilters.colors = colorFilter;
+    if (colors && colors !== 'all') {
+      additionalFilters.colors = colors;
     }
 
     // Check if maxPriceFilter is a valid number
-    if (maxPriceFilter !== '' && !isNaN(maxPriceFilter) && maxPriceFilter !== 'All') {
+    if (maxPrice !== '' && !isNaN(maxPrice) && maxPrice !== 'all') {
       additionalFilters.list_price = {
         ...(additionalFilters.list_price || {}),
-        $lte: parseFloat(maxPriceFilter),
+        $lte: parseFloat(maxPrice),
       };
     }
 
     // Check if minPriceFilter is a valid number
-    if (minPriceFilter !== '' && !isNaN(minPriceFilter) && minPriceFilter !== 'All') {
+    if (minPrice !== '' && !isNaN(minPrice) && minPrice !== 'all') {
       additionalFilters.list_price = {
         ...(additionalFilters.list_price || {}),
-        $gte: parseFloat(minPriceFilter),
+        $gte: parseFloat(minPrice),
       };
     }
 
     // Check if mileageFilter is a valid number
-    if (mileageFilter !== '' && !isNaN(mileageFilter)) {
-      additionalFilters.mileage = { $gte: parseFloat(mileageFilter) };
+    if (mileage !== '' && !isNaN(mileage)) {
+      additionalFilters.mileage = { $gte: parseFloat(mileage) };
     }
 
     let query = additionalFilters;

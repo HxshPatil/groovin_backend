@@ -34,6 +34,5 @@ const oemSpecsSchema = new mongoose.Schema({
     required: true,
   },
 });
-  
-module.exports = mongoose.model('OEM_Specs', oemSpecsSchema);
 
+module.exports = mongoose.model('OEM_Specs', oemSpecsSchema);

@@ -6,7 +6,7 @@ mongoose.connect('mongodb+srv://harsh0patil001:L1LXkCZoX9SYSVAm@harsh.8sbkl6k.mo
 
 async function generateRandomEntries(){
   const entries = [];
-  const colors = ['Red', 'Blue', 'White', 'Silver', 'Black', 'Gray', 'Yellow'];
+  const colors = ['red', 'blue', 'white', 'silver', 'black', 'gray', 'yellow'];
   function getRandomColor() {
     var randomIndex = Math.floor(Math.random() * colors.length);
     return colors[randomIndex];
