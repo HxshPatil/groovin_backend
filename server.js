@@ -8,7 +8,7 @@ connectDb()
 const app = express();
 app.use(cors());
 
-const port = process.env.PORT || 5001;
+const port = 8000 || 5001;
 app.use(express.json());
 app.get("/", (req,res) =>{
   res.send("I am live.");
