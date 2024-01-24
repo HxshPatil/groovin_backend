@@ -10,6 +10,9 @@ app.use(cors());
 
 const port = process.env.PORT || 5001;
 app.use(express.json());
+app.get("/", (req,res) =>{
+  res.send("I am live.");
+});
 app.use("/api", require("./routers/get_count_router"), require("./routers/get_similar_router"),require("./routers/get_all_router"),require('./routers/get_filtered_cars_router')); 
 app.use(errorHandler);
 
