@@ -2,7 +2,7 @@ const oem = require("../mongoDB/models/oem_specs");
 
 const getSimilarCarsCallback = async (req, res) => {
   const { query } = req.query;
-  const [manufacturer='', model=''] = query.split(' ');
+  const [manufacturer = '', model = ''] = query.split(' ');
 
   try {
     // Fetch all cars from the database
@@ -11,10 +11,10 @@ const getSimilarCarsCallback = async (req, res) => {
     // Calculate similarity scores for each car based on manufacturer and model
     const similarityScores = allCars.map(car => ({
       car,
-      similarity: calculateSimilarity(manufacturer, car.manufacturer) +
-                   calculateSimilarity(model, car.model),
+      similarity: calculateSimilarity(manufacturer.toLowerCase(), car.manufacturer.toLowerCase()) +
+                   calculateSimilarity(model.toLowerCase(), car.model.toLowerCase()),
     }));
-    
+
     // Sort the results by similarity in descending order
     similarityScores.sort((a, b) => b.similarity - a.similarity);
 
@@ -31,7 +31,7 @@ const getSimilarCarsCallback = async (req, res) => {
 
 // Helper function to calculate similarity using Levenshtein distance
 function calculateSimilarity(query, field) {
-  
+
   const maxLength = Math.max(query.length, field.length);
   const distance = levenshteinDistance(query, field);
   const similarity = 1 - distance / maxLength;
