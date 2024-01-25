@@ -33,6 +33,10 @@ const oemSpecsSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  image_url: {
+    type: String, // Assuming the image URL is a string
+    required: true,
+  },
 });
 
 module.exports = mongoose.model('OEM_Specs', oemSpecsSchema);
