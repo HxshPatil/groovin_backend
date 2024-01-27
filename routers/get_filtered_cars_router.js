@@ -1,7 +1,7 @@
-const express= require("express");
+const express = require("express");
 const router = express.Router();
-const { filterCars} = require("../controllers/get_filtered_cars");
+const { filterCars } = require("../controllers/get_filtered_cars");
 
-router.route("/filter") .get( filterCars );
+router.route("/filter").get(filterCars);
 
-module.exports =router;
+module.exports = router;

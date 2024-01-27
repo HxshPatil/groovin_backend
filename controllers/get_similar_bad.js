@@ -2,36 +2,57 @@ const oem = require("../mongoDB/models/oem_specs");
 
 const getSimilarCarsCallback = async (req, res) => {
   const { query } = req.query;
-  const [manufacturer = '', model = ''] = query.split(' ');
+  let threshold = 0;
+  const [manufacturer = "", model = ""] = query.split(" ");
 
   try {
     // Fetch all cars from the database
     const allCars = await oem.find();
 
     // Calculate similarity scores for each car based on manufacturer and model
-    const similarityScores = allCars.map(car => ({
+    const similarityScores = allCars.map((car) => ({
       car,
-      similarity: calculateSimilarity(manufacturer.toLowerCase(), car.manufacturer.toLowerCase()) +
-                   calculateSimilarity(model.toLowerCase(), car.model.toLowerCase()),
+      similarity:
+        calculateSimilarity(
+          manufacturer.toLowerCase(),
+          car.manufacturer.toLowerCase()
+        ) +
+        calculateSimilarity(model.toLowerCase(), car.model.toLowerCase()) +
+        calculateSimilarity(
+          manufacturer.toLowerCase(),
+          car.model.toLowerCase()
+        ) +
+        calculateSimilarity(
+          model.toLowerCase(),
+          car.manufacturer.toLowerCase()
+        ),
     }));
 
     // Sort the results by similarity in descending order
     similarityScores.sort((a, b) => b.similarity - a.similarity);
 
     // Filter results based on a threshold (adjust as needed)
-    const threshold = 0.5; // Adjust this value based on your requirements
-    const similarCars = similarityScores.filter(score => score.similarity > threshold);
+    if (query.length < 3) {
+      threshold = 0.2;
+    } else if (query.length < 7) {
+      threshold = 0.4;
+    } else {
+      threshold = 0.6;
+    }
+    console.log(threshold);
+    const similarCars = similarityScores.filter(
+      (score) => score.similarity > threshold
+    );
 
-    res.json(similarCars.map(item => item.car));
+    res.json(similarCars.map((item) => item.car));
   } catch (error) {
-    console.error('Error fetching similar cars:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error("Error fetching similar cars:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
 // Helper function to calculate similarity using Levenshtein distance
 function calculateSimilarity(query, field) {
-
   const maxLength = Math.max(query.length, field.length);
   const distance = levenshteinDistance(query, field);
   const similarity = 1 - distance / maxLength;
@@ -42,7 +63,9 @@ function calculateSimilarity(query, field) {
 // Helper function to calculate Levenshtein distance
 function levenshteinDistance(a, b) {
   const matrix = Array.from({ length: a.length + 1 }, (_, i) =>
-    Array.from({ length: b.length + 1 }, (_, j) => (i === 0 ? j : j === 0 ? i : 0))
+    Array.from({ length: b.length + 1 }, (_, j) =>
+      i === 0 ? j : j === 0 ? i : 0
+    )
   );
 
   for (let i = 1; i <= a.length; i++) {

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const oemSpecsSchema = new mongoose.Schema({
   manufacturer: {
@@ -6,6 +6,10 @@ const oemSpecsSchema = new mongoose.Schema({
     required: true,
   },
   model: {
+    type: String,
+    required: true,
+  },
+  manufacturer_model: {
     type: String,
     required: true,
   },
@@ -38,5 +42,4 @@ const oemSpecsSchema = new mongoose.Schema({
     required: true,
   },
 });
-
-module.exports = mongoose.model('OEM_Specs', oemSpecsSchema);
+module.exports = mongoose.model("OEM_Specs", oemSpecsSchema);
