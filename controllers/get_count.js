@@ -1,8 +1,8 @@
-const marketplace = require("../mongoDB/models/marketplace_inventory");
+const oem_specs = require("../mongoDB/models/oem_specs");
 
 const get_oem_count = async (req, res) => {
   try {
-    const count = await marketplace.countDocuments();
+    const count = await oem_specs.countDocuments();
     res.json({ count });
   } catch (error) {
     console.error("cannot fetch count:", error);

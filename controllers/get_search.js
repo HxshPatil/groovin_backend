@@ -17,8 +17,6 @@ const getSearchCallback = async (req, res) => {
       },
     ];
     const similarCars = await oem.aggregate(pipeline);
-    console.log(similarCars);
-
     res.json(similarCars);
   } catch (error) {
     console.error("Error fetching similar cars:", error);
