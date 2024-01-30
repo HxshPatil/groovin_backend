@@ -12,7 +12,8 @@ const port = 8000 || 5001;
 app.use(express.json());
 app.use(
   "/api",
-  require("./routers/get_all_router")
+  require("./routers/get_all_router"),
+  require("./routers/get_all_caps_router")
 );
 app.use(errorHandler);
 
