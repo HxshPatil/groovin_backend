@@ -17,5 +17,9 @@ const caps = new mongoose.Schema({
     type: Array,
     required: true,
   },
+  ratings:{
+    type:Number,
+    required:true,
+  }
 });
 module.exports = mongoose.model("Caps", caps);

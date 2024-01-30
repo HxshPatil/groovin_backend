@@ -12,7 +12,7 @@ const getAllCaps = async (req, res) => {
       .skip(skip)
       .limit(perPage);
 
-    const totalCount = await caps.countDocuments(); // Get total count of cars
+    const totalCount = await caps.countDocuments();
 
     res.status(200).json({ cardsData, totalCount });
   } catch (error) {
