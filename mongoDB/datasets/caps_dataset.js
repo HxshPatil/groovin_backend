@@ -11,8 +11,8 @@ const sampleData = [
         list_price: 19.99,
         colors: ["black","blue"],
         image_url: [
-          "https://starrwesternwear.com/cdn/shop/files/GoorinBrosMensTheFreedomCap-101-0384.png",
-          "https://starrwesternwear.com/cdn/shop/files/GoorinBrosMensTheFreedomCap-101-0384_2.png?v=1686160366",
+          "https://starrwesternwear.com/cdn/shop/files/GoorinBrosMensTheFreedomCap-101-0384.png?w=300&h=200",
+          "https://starrwesternwear.com/cdn/shop/files/GoorinBrosMensTheFreedomCap-101-0384_2.png?w=300&h=200",
         ],
         ratings:4.5
       },
@@ -21,29 +21,29 @@ const sampleData = [
         list_price: 24.99,
         colors: ["cyan", "aquamarine"],
         image_url: [
-          "https://www.goorin.com/cdn/shop/files/101-1119-MIN-F01.jpg?v=1699310941",
-          "https://www.goorin.com/cdn/shop/products/101-0383-BLU-F01_1500x.jpg?v=1691615687",
+          "https://www.goorin.com/cdn/shop/files/101-1119-MIN-F01.jpg?w=300&h=200",
+          "https://www.goorin.com/cdn/shop/products/101-0383-BLU-F01_1500x.jpg?w=300&h=200200",
         ],
         ratings:2.5
       },
       {
         cap: "Snapback",
         list_price: 21.99,
-        colors: ["black", "white", "red"],
+        colors: ["black", "yellow", "red"],
         image_url: [
-          "https://i.pinimg.com/564x/9f/cf/09/9fcf0924df9611bd35ff3871e5dd4bd1.jpg",
-          "https://img.freepik.com/free-psd/cap-mockup_1310-495.jpg",
-          "https://i.pinimg.com/736x/5f/f0/ef/5ff0ef063be8212810cb8877181bc98a.jpg"
+          "https://www.goorin.com/cdn/shop/products/101-0385-CHA-F01_375x.jpg?w=300&h=200",
+          "https://www.goorin.com/cdn/shop/products/101-0388-YEL-F01_375x.jpg?w=300&h=200",
+          "https://www.goorin.com/cdn/shop/files/101-0391-WIN-F01_375x.jpg?w=300&h=200"
         ],
         ratings:3
       },
       {
         cap: "Beanie",
         list_price: 14.99,
-        colors: ["blue", "purple"],
+        colors: ["blue", "green"],
         image_url: [
-          "https://image.made-in-china.com/202f0j00yPictHVWCUkm/BSCI-Two-in-One-Purple-Polar-Fleece-Winter-Neck-Scarf-Beanie-Hat.jpg",
-          "https://w7.pngwing.com/pngs/641/392/png-transparent-beanie-hat-icebreaker-merino-clothing-pea-purple-hat-violet-thumbnail.png",
+          "https://www.goorin.com/cdn/shop/files/101-0493-BLU-F01_375x.jpg?w=300&h=200",
+          "https://www.goorin.com/cdn/shop/products/101-0392-GRE-F01_375x.jpg?w=300&h=200",
         ],
         ratings:4.5
       },
@@ -52,19 +52,18 @@ const sampleData = [
         list_price: 18.99,
         colors: ["red", "yellow"],
         image_url: [
-          "https://i.pinimg.com/736x/5f/f0/ef/5ff0ef063be8212810cb8877181bc98a.jpg",
-          "https://freepngimg.com/convert-png/151300-cap-hat-sports-free-download-image",
+          "https://www.goorin.com/cdn/shop/files/101-0391-WIN-F01_375x.jpg?w=300&h=200",
+          "https://www.goorin.com/cdn/shop/products/101-0388-YEL-F01_375x.jpg?w=300&h=200",
         ],
         ratings:3.5
       },
       {
         cap: "Buckie",
         list_price: 16.99,
-        colors: ["black", "white", "red"],
+        colors: ["red","black"],
         image_url: [
-          "https://i.pinimg.com/564x/9f/cf/09/9fcf0924df9611bd35ff3871e5dd4bd1.jpg",
-          "https://img.freepik.com/free-psd/cap-mockup_1310-495.jpg",
-          "https://i.pinimg.com/736x/5f/f0/ef/5ff0ef063be8212810cb8877181bc98a.jpg"
+          "https://www.goorin.com/cdn/shop/products/101-0512-WIN-F01_375x.jpg?w=300&h=200",
+          "https://www.goorin.com/cdn/shop/products/101-0512-CHA-F01_375x.jpg?w=300&h=200"
         ],
         ratings:3
       },
@@ -73,8 +72,8 @@ const sampleData = [
         list_price: 29.99,
         colors: ["black","blue"],
         image_url: [
-          "https://starrwesternwear.com/cdn/shop/files/GoorinBrosMensTheFreedomCap-101-0384.png",
-          "https://starrwesternwear.com/cdn/shop/files/GoorinBrosMensTheFreedomCap-101-0384_2.png?v=1686160366",
+          "https://starrwesternwear.com/cdn/shop/files/GoorinBrosMensTheFreedomCap-101-0384.png?w=300&h=200",
+          "https://starrwesternwear.com/cdn/shop/files/GoorinBrosMensTheFreedomCap-101-0384_2.png?w=300&h=200",
         ],
         ratings:4
       }
@@ -82,7 +81,7 @@ const sampleData = [
 
 async function insertSampleData() {
   try {
-    // await Caps.deleteMany();
+    //await Caps.deleteMany();
     await Caps.insertMany(sampleData);
     console.log("cap data inserted successfully!");
   } catch (error) {
