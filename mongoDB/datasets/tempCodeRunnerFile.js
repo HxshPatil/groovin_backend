@@ -1,0 +1,1 @@
+await Caps.deleteMany();
